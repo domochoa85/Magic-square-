@@ -1,0 +1,29 @@
+r1:
+	g++ -o sdot_v1 sdot_v1.cpp
+r2:
+	g++ -o sdot_v2 sdot_v2.cpp
+r3:
+	g++ -o sdot_v3 sdot_v3.cpp
+r4:
+	g++ -o cdot_v1 -lpthread cdot_v1.cpp
+r5:
+	for i in {1..1000}; do ./cdot_v1; done
+r6:
+	g++ -o cdot_v2 -lpthread cdot_v2.cpp
+r7:
+	for i in {1..1000}; do ./cdot_v2; done
+r8:
+	g++ -o cdot_v3 -lpthread cdot_v3.cpp
+r9:
+	for i in {1..1000}; do ./cdot_v3; done
+r10:
+	g++ -o cdot_v4 -lpthread cdot_v4.cpp
+r11:
+	for i in {1..1000}; do ./cdot_v4; done
+
+r12:
+	g++ -lpthread -o cdot_v5 cdot_v5.cpp
+	
+clean:
+	find . -maxdepth 1 -type f -executable -delete
+	rm *.swp
