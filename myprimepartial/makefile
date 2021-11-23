@@ -3,6 +3,10 @@ r1:
 r2:
 	for i in {1..100}; do ./cfindprime_v1;  done
 
+r11:
+	g++ -lpthread cfindprime_v11.cpp -o cfindprime_v11
+r21:
+	for i in {1..100}; do ./cfindprime_v11 4567 7;  done
 r3:
 	g++ -lpthread cfindprime_v2.cpp -o cfindprime_v2
 r4:
