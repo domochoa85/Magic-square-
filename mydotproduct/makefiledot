@@ -21,9 +21,5 @@ r10:
 r11:
 	for i in {1..1000}; do ./cdot_v4; done
 
-r12:
-	g++ -lpthread -o cdot_v5 cdot_v5.cpp
-	
 clean:
 	find . -maxdepth 1 -type f -executable -delete
-	rm *.swp
