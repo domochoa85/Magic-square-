@@ -20,6 +20,7 @@ r10:
 	g++ -o cdot_v4 -lpthread cdot_v4.cpp
 r11:
 	for i in {1..1000}; do ./cdot_v4; done
-
+r12:   
+	g++ -Wa,-adhln -g -lpthread cdot_v1.cpp > cdot_v1_assembly_list.s
 clean:
 	find . -maxdepth 1 -type f -executable -delete
