@@ -1,5 +1,5 @@
 csudokuchecker:
-	g++ -o csudokuchecker -lpthread csudokuchecker.cpp
+	$ g++ -o csudokuchecker  csudokuchecker.cpp -lpthread
 run:
 	./csudokuchecker
 csudokucheckerg:
