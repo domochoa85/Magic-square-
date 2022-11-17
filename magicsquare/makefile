@@ -1,7 +1,7 @@
 compile:
-	g++ -o loadms loadms.cpp
+	g++ -o serialchecker serialchecker.cpp
 run:
-	./loadms
+	./serialchecker
 
 multithreading:
 	g++ -o mscheckermt mscheckermt.cpp -lpthread
