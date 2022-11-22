@@ -114,7 +114,6 @@ void validate_ms()
 	{
 	
 		inputoutputparameter *iop=new inputoutputparameter(threadIndex, col);		
-		iop->index=col;
 		iopa[threadIndex]=iop;		
 		threads[threadIndex++]=thread(checkacol, iop);
 	
