@@ -99,6 +99,8 @@ void validate_ms()
 	thread *threads= new thread[numberofthreads];
 	inputoutputparameter **iopa=new inputoutputparameter*[numberofthreads];
 
+	flag=true;
+
 	int threadIndex=0; 
 	//check bw diagnal
 	inputoutputparameter *iop=new inputoutputparameter(threadIndex, -1); // -1 is just a placeholder
@@ -122,9 +124,9 @@ void validate_ms()
 	//
 	//
 	cout<<"before all joining"<<endl;
-	flag=true;
 
-	for(int i=0; i<numberofthreads; i++)
+	//for(int i=0; i<numberofthreads; i++)
+	for(int i=0; i<threadIndex; i++)
 	{
         	cout<<"joining: "<< i<<", " <<iopa[i]->tid <<", "<<iopa[i]->index<< ", "<<iopa[i]->flag<<endl;
 
@@ -134,10 +136,11 @@ void validate_ms()
 		{
 			cout<<i<<", "<< iopa[i]->index <<" isn't correct "<<endl;
 			flag=false;
+			break;
 		}
 	}
 
-	cout<<"after all joining"<<endl;
+	//cout<<"after all joining, possibly with early termination! "<<endl;
 
 	return ;
 }
@@ -156,6 +159,7 @@ int main()
 	numberofthreads=2*size+2; 
 
 	validate_ms();
+
 	if (flag == true)
 		cout<<"Magical"<<endl;
 	else
