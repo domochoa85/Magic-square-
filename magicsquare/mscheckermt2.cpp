@@ -99,7 +99,6 @@ void validate_ms()
 	thread *threads= new thread[numberofthreads];
 	inputoutputparameter **iopa=new inputoutputparameter*[numberofthreads];
 
-	flag=true; // this is the global flag, not per thread flag.
 
 	int threadIndex=0; 
 	//check bw diagnal
@@ -124,10 +123,12 @@ void validate_ms()
 	//
 	cout<<"before all joining"<<endl;
 
+	flag=true;
 	//for(int i=0; i<numberofthreads; i++)
 	for(int i=0; i<threadIndex; i++)
 	{
-        	cout<<"joining: "<< i<<", " <<iopa[i]->tid <<", "<<iopa[i]->index<< ", "<<iopa[i]->flag<<endl;
+        	cout<<"joining: "<< i<<", " <<iopa[i]->tid 
+			<<", "<<iopa[i]->index<< ", "<<iopa[i]->flag<<endl;
 
 		threads[i].join();
 
@@ -142,7 +143,12 @@ void validate_ms()
 	//cout<<"after all joining, possibly with early termination! "<<endl;
 	//
 	//
-	//
+	// release the dynamically allocated resources.
+	delete [] threads;
+	// remove /2 when all threads are created, now only half threads were created.
+	for (int i=0; i<numberofthreads/2; i++) if (iopa[i]!=nullptr) delete iopa[i];
+
+	delete []iopa; 
 
 	return ;
 }
@@ -151,7 +157,6 @@ void validate_ms()
 
 int main()
 {
-
 	string fn;
 	cout<<"Please input file name (such as ms1.txt): " ;
 	cin>>fn;
