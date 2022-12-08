@@ -9,6 +9,8 @@ void sig_handler(int signum){
 
   //Return type of the handler function should be void
   printf("\nInside handler function\n");
+  sleep(5);
+
   //exit(-1);
 }
 
