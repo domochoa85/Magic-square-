@@ -11,7 +11,7 @@ void printmenu() {
   printf("1. ls -l\n");
   printf("2. uname -r\n");
   printf("3. top\n");
-  printf("=========================== =========\n");
+  printf("=====Select a command to run.========\n");
 }
 
 int main() {
