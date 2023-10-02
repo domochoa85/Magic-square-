@@ -1,60 +1,60 @@
+#include <signal.h>
 #include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <unistd.h>
 
-void printmenu()
-{
-	printf("0. exit\n");
-	printf("1. ls \n");
-	printf("2. uname -r\n");
-
+void printmenu() {
+  printf("=======Mini Shell by S. Z. =========\n");
+  printf("0. exit\n");
+  printf("1. ls -l\n");
+  printf("2. uname -r\n");
+  printf("3. top\n");
+  printf("=========================== =========\n");
 }
 
-int main()
-{
-   int choice;
-   int flag;
-   int status;
+int main() {
+  int choice;
+  int flag;
+  int status;
+  signal(SIGINT, SIG_IGN);
+  do {
+    printmenu();
+    scanf("%d", &choice);
+    pid_t pid = fork();
 
-   do
-	{
-	printmenu();
-	scanf("%d", &choice);
-	pid_t pid=fork();
+    if (pid == 0) {
+      switch (choice) {
+      case 1:
+        execl("/usr/bin/ls", "ls", "-l",NULL);
+        printf("no chance to run?"); //
+        break;                       //
+      case 2:
+        execl("/usr/bin/uname", "uname", "-r", NULL);
+        break;
+      case 3:
+        execl("/usr/bin/top", "top", NULL);
+        break;
+      case 0:
+        break;
+      }
+    }
+    if (pid > 0) {
+      pid = wait(&status);
+      printf("End of process %d: ", pid);
 
-	if (pid==0)	
-	{
-		switch (choice)
-		{
-			case 1:
-				execl("/usr/bin/ls", "ls", NULL);
-				printf("no chance to run?"); //
-				break; // 
-			case 2:
-				execl("/usr/bin/uname", "uname", "-r", NULL);
-				break;
-			case 0: 
-				break;
-		}
-	}
-	if (pid>0)
-	{
-pid = wait(&status);
-  printf("End of process %d: ", pid);
+      if (WIFEXITED(status)) {
+        printf("The process ended with exit(%d).\n", WEXITSTATUS(status));
+      }
 
-  if (WIFEXITED(status)) {
-    printf("The process ended with exit(%d).\n", WEXITSTATUS(status));
-  }
+      if (WIFSIGNALED(status)) {
+        printf("The process ended with kill -%d.\n", WTERMSIG(status));
+      }
+    }
 
-  if (WIFSIGNALED(status)) {
-    printf("The process ended with kill -%d.\n", WTERMSIG(status));
-  }	
-  }
-	
-}while(choice!=0);
+  } while (choice != 0);
 
-   printf("Bybey.... myshell exit\n");
-   return 0;
+  printf("Byebye.... myshell exit\n");
+  return 0;
 }
