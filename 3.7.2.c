@@ -37,9 +37,11 @@ int main()
     close(fd);
 
     // Unlink the shared memory object (optional)
-    // run the producer first, then run consumer multiple time, record what you see. Why?
-    // then comment out the following statement, recompile, and run multiple time again. What do you see? Record. Why?
     // shm_unlink(name);
+    
+    // run the producer first, then run consumer multiple time, record what you see. Why?
+    // then comment out the above unlink statement, recompile, and run multiple time again. What do you see? Record. Why?
+    
 
     return 0;
 }
