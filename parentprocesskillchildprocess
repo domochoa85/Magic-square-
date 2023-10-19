@@ -1,0 +1,28 @@
+#include <signal.h>
+
+pid_t child_pid = -1 ; //Global
+
+void kill_child(int sig)
+{
+    kill(child_pid,SIGKILL);
+}
+
+int main(int argc, char *argv[])
+{
+    signal(SIGALRM,(void (*)(int))kill_child);
+    child_pid = fork();
+    if (child_pid > 0) {
+     /*PARENT*/
+        alarm(30);
+        /*
+         * Do parent's tasks here.
+         */
+        wait(NULL);
+    }
+    else if (child_pid == 0){
+     /*CHILD*/
+        /*
+         * Do child's tasks here.
+         */
+    }
+}
