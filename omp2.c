@@ -18,9 +18,14 @@ gcc -o omp2 -fopenmp omp2.c -D_GNU_SOURCE
 5) Screenshots of the output from running the program with 7 threads.
 
 */
-int main (int argc, char *argv[])  { 
+int main (int argc, char *argv[])  
+{ 
 int nthreads, tid; 
-// Fork a team of threads giving them their own copies of variables 
+
+double start; 
+double end; 
+start = omp_get_wtime(); 
+ // Fork a team of threads giving them their own copies of variables 
 #pragma omp parallel private(nthreads, tid) 
  { 
    tid = omp_get_thread_num();      // Obtain thread number 
@@ -34,5 +39,8 @@ printf("Number of threads = %d\n", nthreads);
    } 
 }     
 // All threads join master thread and disband 
+end = omp_get_wtime(); 
+printf(" It took %f seconds\n", end - start);
+
  return(0); 
 } 
