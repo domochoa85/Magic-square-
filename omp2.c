@@ -1,6 +1,7 @@
 #include <omp.h> 
 #include <stdio.h> 
 #include <stdlib.h> 
+#include <sched.h>
 #define _GNU_SOURCE // sched_getcpu(3) is glibc-specific 
 
 // export OMP_NUM_THREADS=$(grep 'processor.*:' /proc/cpuinfo | wc -l)
