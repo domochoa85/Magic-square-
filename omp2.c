@@ -14,7 +14,7 @@ gcc -o omp2 -fopenmp omp2.c -D_GNU_SOURCE
 1) Explain the source code clearly
 2) Screenshot from compiling and running the the program using the above commands
 3) explanation of output and thread order, with respect to the above linux commands
-4) Program listing of the program with the number of threads altered to 7
+4) How to configure OMP_NUM_THREADS environment variable to 7, so 7 threads will be spawned to run on whatever number of CPUs available.
 5) Screenshots of the output from running the program with 7 threads.
 
 */
