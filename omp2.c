@@ -2,7 +2,7 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <sched.h>
-#define _GNU_SOURCE // sched_getcpu(3) is glibc-specific 
+//#define _GNU_SOURCE // sched_getcpu(3) is glibc-specific, so it should have been defined in sched.h header file.
 
 /*
 export OMP_NUM_THREADS=$(grep 'processor.*:' /proc/cpuinfo | wc -l)
@@ -11,7 +11,7 @@ gcc -o omp2 -fopenmp omp2.c -D_GNU_SOURCE
 ./omp2 
 ./omp2 |sort
 
-1) Explain the source code clearly
+1) Explain the source code clearly, with attention given to the openmp related directives and functions.
 2) Screenshot from compiling and running the the program using the above commands
 3) explanation of output and thread order, with respect to the above linux commands
 4) How to configure OMP_NUM_THREADS environment variable to 7, so 7 threads will be spawned to run on whatever number of CPUs available.
