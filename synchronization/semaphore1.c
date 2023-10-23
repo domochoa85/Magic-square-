@@ -1,4 +1,4 @@
-//g++ semaphore1.cpp -lpthread
+//gcc semaphore1.c -lpthread
 // C program to demonstrate working of Semaphores
 #include <stdio.h>
 #include <pthread.h>
@@ -7,7 +7,7 @@
 
 
 sem_t mutex;
-
+int counter=0;
 void* thread(void* arg)
 {
 	//wait
@@ -15,6 +15,8 @@ void* thread(void* arg)
 	printf("\nEntered..\n");
 
 	//critical section
+	counter=counter+1; 
+	
 	sleep(4);
 	
 	//signal
@@ -30,6 +32,8 @@ int main()
 	pthread_create(&t1,NULL,thread,NULL);
 	sleep(2);
 	pthread_create(&t2,NULL,thread,NULL);
+
+	
 	pthread_join(t1,NULL);
 	pthread_join(t2,NULL);
 	sem_destroy(&mutex);
