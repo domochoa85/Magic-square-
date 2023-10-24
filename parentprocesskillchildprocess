@@ -1,30 +1,29 @@
-//rought idea, need to be debugged ...
-#include .... 
+#include <stdio.h>
 #include <signal.h>
+#include <unistd.h>
+#include <sys/wait.h>
 
-
-
-void kill_child(int sig)
-{
-    kill(child_pid,SIGKILL);
-}
+// we are going to ignore the killsignal ... soon 
 
 int main(int argc, char *argv[])
 {
-    signal(SIGALRM,(void (*)(int))kill_child);
-    pid_t child_pid = fork();
-    if (child_pid > 0) {
-     /*PARENT*/
-        alarm(30);
-        /*
-         * Do parent's tasks here.
-         */
+     pid_t child_pid = fork();
+     
+     if (child_pid > 0) {
+         /*PARENT*/
+        usleep(10000);
+        printf("I am the parent\n");
+        //kill(child_pid, SIGKILL);
+        printf("I am the parent 2\n");
         wait(NULL);
-    }
-    else if (child_pid == 0){
-     /*CHILD*/
-        /*
-         * Do child's tasks here.
-         */
-    }
+           } 
+else  if (child_pid == 0){
+             /*CHILD*/
+                    printf("I am a child\n");
+                    usleep(10000);
+                    printf("I am a child 2\n");
+                }
+        
+        printf("end of which process???");
+        return 0;
 }
